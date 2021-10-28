@@ -1,6 +1,12 @@
 from pydantic import BaseModel
 
 
-class AuthDetails(BaseModel):
+class LogInDetails(BaseModel):
     username: str
     password: str
+
+
+class SignUpDetails(BaseModel):
+    username: str
+    password: str
+    name: str

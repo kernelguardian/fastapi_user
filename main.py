@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from auth import AuthHandler
-from schemas import AuthDetails
+from schemas import LogInDetails, SignUpDetails
 
 
 app = FastAPI()
@@ -11,7 +11,7 @@ users = []
 
 
 @app.post('/register', status_code=201)
-def register(auth_details: AuthDetails):
+def register(auth_details: SignUpDetails):
     if any(x['username'] == auth_details.username for x in users):
         raise HTTPException(status_code=400, detail='Username is taken')
     hashed_password = auth_handler.get_password_hash(auth_details.password)
@@ -23,7 +23,7 @@ def register(auth_details: AuthDetails):
 
 
 @app.post('/login')
-def login(auth_details: AuthDetails):
+def login(auth_details: LogInDetails):
     user = None
     for x in users:
         if x['username'] == auth_details.username:
