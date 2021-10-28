@@ -2,11 +2,11 @@ from pydantic import BaseModel
 
 
 class LogInDetails(BaseModel):
-    username: str
+    email: str
     password: str
 
 
 class SignUpDetails(BaseModel):
-    username: str
+    email: str
     password: str
     name: str
